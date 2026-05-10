@@ -6,7 +6,7 @@ import { UploadOverlay } from './components/UploadOverlay';
 import './App.css';
 
 // Set default base URL for production/development
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+axios.defaults.baseURL = import.meta.env.BACKEND_URL || "http://localhost:3000";
 
 function App() {
   const [documents, setDocuments] = useState([]);
