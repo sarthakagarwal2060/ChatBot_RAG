@@ -16,7 +16,11 @@ const PORT = process.env.PORT || 3000;
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://chatbotrag-rouge.vercel.app/",
+  }),
+);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
