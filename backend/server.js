@@ -16,9 +16,14 @@ const PORT = process.env.PORT || 3000;
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
+const allowedOrigins = [
+  "https://chatbot-rag-kouh.onrender.com",
+  "https://chatbot-p8oi7jsaz-sarthak-agarwals-projects-dfc7dd48.vercel.app/",
+  "https://chatbotrag-rouge.vercel.app",
+];
 app.use(
   cors({
-    origin: "https://chatbotrag-rouge.vercel.app/",
+    origin: allowedOrigins
   }),
 );
 app.use(express.json());
