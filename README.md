@@ -1,4 +1,4 @@
-﻿# Full-Stack RAG Applicatio
+﻿# Full-Stack RAG Application
 
 **🌟 Live Demo:** https://chatbotrag-rouge.vercel.app/
 
