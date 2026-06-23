@@ -29,6 +29,10 @@ class OpenRouterEmbeddings extends Embeddings {
       throw new Error(`Embedding API error ${res.status}: ${err}`);
     }
     const json = await res.json();
+    if (!json.data || !Array.isArray(json.data)) {
+      console.error("[Embedding] Unexpected API response:", JSON.stringify(json).substring(0, 500));
+      throw new Error(`Embedding API returned malformed response (missing 'data' array)`);
+    }
     return json.data
       .sort((a, b) => a.index - b.index)
       .map(d => d.embedding);
@@ -211,7 +215,10 @@ export async function queryDocument(userQuery, collectionName) {
     rewrittenQuery = await rewriteQuery(userQuery, feedback);
 
     // Step 2: Retrieve chunks using rewritten query
-    const searchedChunks = await retriever.invoke(rewrittenQuery);
+    const searchedChunks = await callWithRetry(
+      () => retriever.invoke(rewrittenQuery),
+      "Vector Retrieval"
+    );
     console.log(`[Retrieval] Got ${searchedChunks.length} chunks from vector search`);
 
     // Deduplicate against previously seen chunks
