@@ -75,8 +75,8 @@ export async function indexDocument(filePath, filename, collectionName) {
 
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 1000,
-    // chunkOverlap: 200,
-    chunkOverlap: 190,
+    chunkOverlap: 200,
+    // chunkOverlap: 190,
   });
 
   const docs = await textSplitter.splitDocuments(rawDocs);
