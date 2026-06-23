@@ -17,6 +17,7 @@ const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
 const allowedOrigins = [
+  "http://localhost:5173",
   "https://chatbot-p8oi7jsaz-sarthak-agarwals-projects-dfc7dd48.vercel.app/",
   "https://chatbotrag-rouge.vercel.app",
 ];
